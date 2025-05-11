@@ -20,18 +20,19 @@ codigos = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..',
 # INVERSÃO DO CÓDIGO: cria um novo dicionário com os valores e chaves trocados, para decodificação
 mrs_codigo = {v: k for k, v in codigos.items()}
 
+# Variável que armazena o nome da pasta
 nome_pasta = "morse"
 
-# caminho ou directório
+# caminho ou directório para amazenar os arquivos 
 caminho = f"C:\\{nome_pasta}\\"
 
-
+# Verificando se o caminho da pasta existe 
 if not os.path.exists(caminho):
     os.mkdir(caminho)
 
 # função para criar arquivo
-def criar_arquivo(nome_arquivo, ext, conteudo):
-    with open(caminho+nome_arquivo+ext, "w") as arq_morse:
+def criar_arquivo(nome_arquivo, conteudo):
+    with open(caminho+nome_arquivo, "w") as arq_morse:
         arq_morse.write(conteudo)
         
 # Função principal do programa
@@ -43,7 +44,7 @@ def simulador():
     print("*"*64)
 
     # Solicita ao usuário que escolha uma das opções
-    escolha = int(input("Insira a opção que pretendes:"))
+    escolha = int(input("\nInsira a opção que pretendes:"))
 
     if (escolha == 1):
         # Opção 1: texto para código Morse
@@ -58,7 +59,7 @@ def simulador():
 
             conteudo = f"Texto normal => {mensagem}\nCódigo morse => {morse}"
             
-            criar_arquivo(mensagem, ".txt", conteudo)
+            criar_arquivo(mensagem, conteudo)
         except:
             # Se algum caractere não estiver no dicionário, ocorre erro
             print("Erro traduzir!")
@@ -76,7 +77,7 @@ def simulador():
 
             conteudo = f"Código morse => {mensagem}\nTexto => {texto}"
             
-            criar_arquivo(texto+"-morse", ".txt", conteudo)
+            criar_arquivo(texto+"-morse", conteudo)
         except:
             print("Erro ao traduzir")
         
@@ -114,7 +115,3 @@ def simulador():
 
 # Chamada inicial da função principal
 simulador()
-
-
-#PRÓXIMAS ALTERAÇÕES
-    #LINGUAGEM E REPETIÇÃO EM CADA FUNÇÃO. 

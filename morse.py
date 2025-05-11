@@ -25,11 +25,9 @@ nome_pasta = "morse"
 # caminho ou directório
 caminho = f"C:\\{nome_pasta}\\"
 
+
 if not os.path.exists(caminho):
     os.mkdir(caminho)
-
-
-
 
 # função para criar arquivo
 def criar_arquivo(nome_arquivo, ext, conteudo):
@@ -37,11 +35,12 @@ def criar_arquivo(nome_arquivo, ext, conteudo):
         arq_morse.write(conteudo)
         
 # Função principal do programa
-def work():
-    print("############# Escolhe uma opção para ser trabalhada ############# \n")
-    print("1: Converter texto em código morse")
-    print("2: Converter código morse em texto")
-    print("3: Converter código morse em áudio")
+def simulador():
+    print("*"*12 +" Escolha uma opção para ser trabalhada "+ "*"*13)
+    print("*"*10 +" "*5 +"1: Converter texto em código morse" +" "*5 +"*"*10)
+    print("*"*10 +" "*5 +"2: Converter código morse em texto" +" "*5 +"*"*10)
+    print("*"*10 +" "*5 +"3: Converter código morse em áudio" +" "*5 +"*"*10)
+    print("*"*64)
 
     # Solicita ao usuário que escolha uma das opções
     escolha = int(input("Insira a opção que pretendes:"))
@@ -109,12 +108,12 @@ def work():
     opcao = input("\n\n\n Desejas tentar de novo?   S/N  \n").upper()
     if opcao == "S":
         # Chama a função novamente
-        work()
+        simulador()
     else:
         print("Terminando...")
 
 # Chamada inicial da função principal
-work()
+simulador()
 
 
 #PRÓXIMAS ALTERAÇÕES

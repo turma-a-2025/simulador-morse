@@ -1,7 +1,8 @@
-# Importa o módulo 'winsound' para tocar sons (apenas no Windows)
+# Importando o módulo 'winsound' para tocar sons (apenas no Windows)
 import winsound
-# Importa o módulo 'time' para controle de tempo (pausas)
+# Importando o módulo 'time' para controle de tempo (pausas)
 import time
+# Importando o módulo 'os' para controle do sistema no terminal
 import os
 
 # DICIONÁRIO DO CÓDIGO MORSE: associa cada letra e número ao seu equivalente em código Morse
@@ -14,7 +15,7 @@ codigos = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..',
            'Y': '-.--', 'Z': '--..',
            '0': '-----', '1': '.----', '2': '..---', '3': '...--',
            '4': '....-', '5': '.....', '6': '-....', '7': '--...',
-           '8': '---..', '9': '----.', ' ': '/'  # Espaço tratado de forma especial
+           '8': '---..', '9': '----.', ' ': '/'
           }
 
 # INVERSÃO DO CÓDIGO: cria um novo dicionário com os valores e chaves trocados, para decodificação
@@ -32,7 +33,7 @@ if not os.path.exists(caminho):
 
 # função para criar arquivo
 def criar_arquivo(nome_arquivo, conteudo):
-    with open(caminho+nome_arquivo, "w") as arq_morse:
+    with open(caminho+nome_arquivo+".txt", "w") as arq_morse:
         arq_morse.write(conteudo)
         
 # Função principal do programa
@@ -57,11 +58,14 @@ def simulador():
             print("mensagem inserida: \n" + mensagem)
             print("mensagem saida em código morse: \n" + morse)
 
+            # Preparando o texto que será inserido no arquivo criado
             conteudo = f"Texto normal => {mensagem}\nCódigo morse => {morse}"
             
+            # Criando o arquivo
             criar_arquivo(mensagem, conteudo)
+            print("Arquivo criado com sucesso.")
         except:
-            # Se algum caractere não estiver no dicionário, ocorre erro
+            # Caso aconteça algum erro ao converter o texto ou criando o arquivo
             print("Erro traduzir!")
 
     elif(escolha == 2):
@@ -75,10 +79,14 @@ def simulador():
             print("mensagem inserida: \n" + mensagem)
             print("mensagem saida em código morse: \n" + texto)
 
+            # Preparando o texto que será inserido no arquivo criado
             conteudo = f"Código morse => {mensagem}\nTexto => {texto}"
             
+            # Criando o arquivo
             criar_arquivo(texto+"-morse", conteudo)
+            print("Arquivo criado com sucesso.")
         except:
+            # Caso aconteça algum erro ao converter o texto ou criando o arquivo
             print("Erro ao traduzir")
         
     elif (escolha == 3):
@@ -99,15 +107,18 @@ def simulador():
                 # Pausa entre palavras
                 time.sleep(0.5)
             else:
-                # Caso encontre símbolo inválido
+                # Caso aconteça algum ao converter o código morse em áudio
                 print("Caractere inválido detectado!")
 
     else:
         # Se a opção inserida não for válida
         print("Opção inválida!")
 
-    opcao = input("\n\n\n Desejas tentar de novo?   S/N  \n").upper()
+    opcao = input("\n\nDesejas tentar de novo?   S/N  \n").upper()
     if opcao == "S":
+        # Limpando a tela
+        os.system("cls")
+        
         # Chama a função novamente
         simulador()
     else:
